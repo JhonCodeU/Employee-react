@@ -1,7 +1,7 @@
 import React from 'react';
 import { AuthProvider } from './context/AuthContext';
 import Login from './components/Login';
-import EmployeeList from './components/EmployeeList';
+import EmployeeList from './components/Employee/EmployeeList';
 
 function App() {
   return (

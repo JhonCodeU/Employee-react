@@ -117,7 +117,7 @@ const EmployeeList = () => {
           employeeId={selectedEmployeeId}
         />
       )}
-      {showRequestList && <RequestList employeeId={selectedEmployeeId} fetchRequests={fetchRequests} />}
+      {showRequestList && <RequestList employeeId={selectedEmployeeId} />}
     </div>
   );
 };

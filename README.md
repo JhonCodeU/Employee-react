@@ -1,70 +1,53 @@
-# Getting Started with Create React App
+Claro, aquí tienes un ejemplo de un `README.md` que describe todo lo que hemos hecho, incluyendo la conexión al backend en `localhost` y el puerto `3000`.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+```markdown
+# Employee Management System
 
-## Available Scripts
+Este proyecto es un sistema de gestión de empleados que permite crear, listar, editar y eliminar empleados, así como crear, listar y eliminar solicitudes asociadas a cada empleado. La aplicación está construida con React para el frontend y se conecta a un backend en `localhost` en el puerto `3000`.
 
-In the project directory, you can run:
+## Requisitos
 
-### `npm start`
+- Node.js
+- npm (o yarn)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Instalación
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+1. Clona este repositorio en tu máquina local:
 
-### `npm test`
+   ```bash
+   git clone https://github.com/tu-usuario/employee-management-system.git
+   cd employee-management-system
+   ```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+2. Instala las dependencias del proyecto:
 
-### `npm run build`
+   ```bash
+   npm install
+   ```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+   o si usas yarn:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+   ```bash
+   yarn install
+   ```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Configuración del Backend
 
-### `npm run eject`
+Asegúrate de que el backend esté corriendo en `localhost` en el puerto `3000`. Puedes ajustar las configuraciones del backend según sea necesario. El backend debe proporcionar los siguientes endpoints:
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+- `GET /api/v1/get_employees`: Obtener todos los empleados
+- `POST /api/v1/create_employee`: Crear un nuevo empleado
+- `GET /api/v1/get_request_by_employee/{id}`: Obtener las solicitudes de un empleado específico
+- `POST /api/v1/create_request`: Crear una nueva solicitud
+- `DELETE /api/v1/delete_request/{id}`: Eliminar una solicitud específica
+- `GET /api/v1/get_employee/{id}`: Obtener la información de un empleado específico
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Estructura del Proyecto
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+El proyecto está estructurado en varios componentes de React para manejar las diferentes funcionalidades:
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- **AuthContext**: Proporciona contexto de autenticación para manejar el token de acceso.
+- **EmployeeList**: Lista todos los empleados y proporciona opciones para crear, editar y eliminar empleados.
+- **CreateEmployeeForm**: Formulario para crear un nuevo empleado.
+- **RequestList**: Lista todas las solicitudes asociadas a un empleado específico.
+- **CreateRequestForm**: Formulario para crear una nueva solicitud para un empleado específico.

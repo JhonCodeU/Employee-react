@@ -2,14 +2,14 @@ import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import { AuthContext } from '../../context/AuthContext';
 
-const RequestList = ({ employeeId, fetchRequests }) => {
+const RequestList = ({ employeeId }) => {
   const { token } = useContext(AuthContext);
   const [requests, setRequests] = useState([]);
   const [employee, setEmployee] = useState(null);
 
   const fetchEmployeeRequests = async () => {
     try {
-      const response = await axios.get(`http://localhost:3000/api/v1/get_requests?employee_id=${employeeId}`, {
+      const response = await axios.get(`http://localhost:3000/api/v1/get_request_by_employee/${employeeId}`, {
         headers: {
           Authorization: `Bearer ${token}`
         }
@@ -48,25 +48,19 @@ const RequestList = ({ employeeId, fetchRequests }) => {
 
   useEffect(() => {
     if (token && employeeId) {
-      fetchEmployeeRequests();
       fetchEmployeeDetails();
+      fetchEmployeeRequests();
     }
   }, [token, employeeId]);
 
   return (
-    <div>
-      <h2 className="text-2xl font-bold mb-4">Lista de Solicitudes</h2>
-      {employee && (
-        <div className="mb-4">
-          <h3 className="text-xl font-semibold">Empleado: {employee.nombre}</h3>
-          <p className="text-sm text-gray-500">Salario: ${employee.salario}</p>
-        </div>
-      )}
+    <div className='mt-4'>
+      <h2 className="text-2xl text-blue-500 font-bold mb-4">Lista de Solicitudes de {employee?.nombre}</h2>
       <ul className="divide-y divide-gray-200">
         {requests.map(request => (
           <li key={request.id} className="px-6 py-4 flex items-center justify-between">
             <div>
-              <p className="text-lg font-semibold">{request.descripcion}</p>
+              <p className="text-lg font-semibold">{request.descripcion}</p> 
               <p className="text-sm text-gray-500">{request.resumen}</p>
             </div>
             <div className="ml-4 flex">

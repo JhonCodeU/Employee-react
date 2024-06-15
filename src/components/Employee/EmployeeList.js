@@ -2,11 +2,16 @@ import React, { useEffect, useState, useContext } from 'react';
 import axios from 'axios';
 import { AuthContext } from '../../context/AuthContext';
 import CreateEmployeeForm from './CreateEmployeeForm';
+import CreateRequestForm from '../Request/CreateRequestForm';
+import RequestList from '../Request/RequestList';
 
 const EmployeeList = () => {
   const { token } = useContext(AuthContext);
   const [employees, setEmployees] = useState([]);
   const [showCreateForm, setShowCreateForm] = useState(false);
+  const [showCreateRequestForm, setShowCreateRequestForm] = useState(false);
+  const [selectedEmployeeId, setSelectedEmployeeId] = useState(null);
+  const [showRequestList, setShowRequestList] = useState(false);
 
   const fetchEmployees = async () => {
     try {
@@ -37,6 +42,29 @@ const EmployeeList = () => {
     console.log(`Eliminar empleado con ID ${id}`);
   };
 
+  const handleCreateRequest = (id) => {
+    setSelectedEmployeeId(id);
+    setShowCreateRequestForm(true);
+  };
+
+  const handleShowRequests = (id) => {
+    setSelectedEmployeeId(id);
+    setShowRequestList(true);
+  };
+
+  const fetchRequests = async (employeeId) => {
+    if (employeeId) {
+      // Implementar lógica para obtener solicitudes del empleado
+      console.log(`Fetching requests for employee ID ${employeeId}`);
+    }
+  };
+
+  useEffect(() => {
+    if (selectedEmployeeId) {
+      fetchRequests(selectedEmployeeId);
+    }
+  }, [selectedEmployeeId]);
+
   return (
     <div className="max-w-4xl mx-auto mt-8">
       <h2 className="text-2xl font-bold mb-4">Lista de Empleados</h2>
@@ -56,12 +84,18 @@ const EmployeeList = () => {
                 <p className="text-lg font-semibold">{employee.nombre}</p>
                 <p className="text-sm text-gray-500">Salario: ${employee.salario}</p>
               </div>
-              <div className="ml-4 flex opacity-25">
+              <div className="ml-4 flex">
                 <button
-                  onClick={() => handleEdit(employee.id)}
-                  className="text-indigo-600 hover:text-indigo-900 focus:outline-none"
+                  onClick={() => handleCreateRequest(employee.id)}
+                  className="ml-2 text-blue-600 hover:text-blue-900 focus:outline-none"
                 >
-                  Editar
+                  Crear Solicitud
+                </button>
+                <button
+                  onClick={() => handleShowRequests(employee.id)}
+                  className="ml-2 text-green-600 hover:text-green-900 focus:outline-none"
+                >
+                  Ver Solicitudes
                 </button>
                 <button
                   onClick={() => handleDelete(employee.id)}
@@ -76,6 +110,14 @@ const EmployeeList = () => {
       </div>
 
       {showCreateForm && <CreateEmployeeForm setShowCreateForm={setShowCreateForm} fetchEmployees={fetchEmployees} />}
+      {showCreateRequestForm && (
+        <CreateRequestForm
+          setShowCreateRequestForm={setShowCreateRequestForm}
+          fetchRequests={() => fetchRequests(selectedEmployeeId)}
+          employeeId={selectedEmployeeId}
+        />
+      )}
+      {showRequestList && <RequestList employeeId={selectedEmployeeId} fetchRequests={fetchRequests} />}
     </div>
   );
 };

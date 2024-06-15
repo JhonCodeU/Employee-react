@@ -1,5 +1,3 @@
-Claro, aquí tienes un ejemplo de un `README.md` que describe todo lo que hemos hecho, incluyendo la conexión al backend en `localhost` y el puerto `3000`.
-
 ```markdown
 # Employee Management System
 

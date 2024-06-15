@@ -15,6 +15,9 @@ Este proyecto es un sistema de gestión de empleados que permite crear, listar, 
 1. Clona este repositorio en tu máquina local:
 
    ```bash
+   https
+    git clone https://github.com/JhonCodeU/Employee-react.git
+   ssh
    git clone git@github.com:JhonCodeU/Employee-react.git
    cd Employee-react
    ```
